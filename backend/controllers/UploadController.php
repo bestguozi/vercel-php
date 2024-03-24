@@ -20,4 +20,9 @@ class UploadController extends AuthController
             }
         }
     }
+
+    public function actionUploadToken() {
+        $service = new \common\services\Qiniu();
+        return ['code'=>0, 'message'=>'', 'token'=>$service->generateToken('any-site')];
+    }
 }

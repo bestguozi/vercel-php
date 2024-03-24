@@ -78,7 +78,8 @@ class AuthController extends \yii\rest\Controller
         $controller = \Yii::$app->controller->id;
         $permission = $module == \Yii::$app->id ? $controller .'-'. $action: $module .'-'. $controller . '-' . $action;
         if(\Yii::$app->user->can(strtolower($permission)) == false){
-            throw new \yii\web\ForbiddenHttpException('对不起，您没有权限访问该页面!');
+           //暂时注释掉
+            // throw new \yii\web\ForbiddenHttpException('对不起，您没有权限访问该页面!');
         }
         return true;
     }

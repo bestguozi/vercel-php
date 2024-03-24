@@ -54,8 +54,6 @@ return [
             'rules' => [
                 'v1/<controller:[\w-]+>/<action:[\w-]+>' => '<controller>/<action>',
                 'v1/<module:[\w-]+>/<controller:[\w-]+>/<action:[\w-]+>' => '<module>/<controller>/<action>',
-                'x1/<controller:[\w-]+>/<action:[\w-]+>' => '<controller>/<action>',
-                'x1/<module:[\w-]+>/<controller:[\w-]+>/<action:[\w-]+>' => '<module>/<controller>/<action>',
             ],
         ],
         'authManager' => [

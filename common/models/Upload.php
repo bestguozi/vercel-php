@@ -43,4 +43,6 @@ class Upload extends \yii\base\Model
     public function getUrl() {
         return $this->url;
     }
+
+
 }

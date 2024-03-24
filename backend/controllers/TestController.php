@@ -66,7 +66,7 @@ class TestController  extends \yii\web\Controller
     }
 
     public function actionFun(){
-        Log::userLogin();
+         return $this->renderPartial('upload');
     }
 
     public function actionName()

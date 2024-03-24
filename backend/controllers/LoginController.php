@@ -4,21 +4,19 @@ namespace backend\controllers;
 
 use backend\models\Log;
 use common\models\LoginForm;
+use yii\web\ForbiddenHttpException;
 
+/**
+ *
+ */
 class LoginController extends \yii\web\Controller
 {
     public $enableCsrfValidation = false;
 
-    public function actionIndex()
-    {
-        $user = new LoginForm();
-        return $this->renderPartial('index', ['model'=>$user]);
-    }
-
     /**
-     * 登录验证
+     * @return false|string|void
      */
-    public function actionCheck()
+    public function actionIndex()
     {
         if (\Yii::$app->request->isPost) {
             $post = \Yii::$app->request->post();
@@ -34,6 +32,4 @@ class LoginController extends \yii\web\Controller
             }
         }
     }
-
-
 }
