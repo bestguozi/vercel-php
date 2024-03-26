@@ -88,4 +88,19 @@ class TestController  extends \yii\web\Controller
 
         $foo->run();
     }
+
+    public function actionGrade(){
+        $grade = new \common\models\Grade();
+        $grade->grade_name = '小班';
+        $grade->save();
+        $grade = new \common\models\Grade();
+        $grade->grade_name = '中班';
+        $grade->save();
+        $grade = new \common\models\Grade();
+        $grade->grade_name = '大班';
+        $grade->save();
+        $grade = new \common\models\Grade();
+        $grade->grade_name = '学前班';
+        $grade->save();
+    }
 }

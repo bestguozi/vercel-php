@@ -52,6 +52,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'v1/login' => 'login/index',
                 'v1/<controller:[\w-]+>/<action:[\w-]+>' => '<controller>/<action>',
                 'v1/<module:[\w-]+>/<controller:[\w-]+>/<action:[\w-]+>' => '<module>/<controller>/<action>',
             ],

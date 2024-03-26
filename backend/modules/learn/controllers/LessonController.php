@@ -1,6 +1,7 @@
 <?php
 
 namespace backend\modules\learn\controllers;
+use backend\modules\learn\models\Book;
 use \common\models\Lesson;
 use \yii\data\Pagination;
 use \common\errors\ErrorCode;
@@ -19,7 +20,7 @@ class LessonController extends \backend\controllers\AuthController
             $query->where(['like', 'lesson_name', $lesson]);
         }
         $query->with('book');
-        $query->with('grade');
+        //$query->with('grade');
         $count = $query->count();
         
         $pagination = new Pagination(['totalCount'=>$count, 'defaultPageSize'=>10]);
@@ -56,12 +57,17 @@ class LessonController extends \backend\controllers\AuthController
      * @return array
      * @throws \yii\base\Exception
      */
-    public function actionCreate()
+    public function actionCreate($book_id)
     {
+        $book = Book::findOne($book_id);
+        if($book == null){
+            return ['code'=>ErrorCode::MODEL_VALIDATE_ERROR, 'message'=>'书籍不存在', 'data'=>[]];
+        }
         $model = new Lesson();
-        $post['WxLesson'] = $this->request->post();
+        $post['Lesson'] = $this->request->post();
         $model->load($post);
-        $model->create_at = date('Y-m-d H:i:s');
+        $model->created_at = date('Y-m-d H:i:s');
+        $model->book_id = $book->id;
         if ($model->save()) {
            
             return ['status'=>200, 'message'=>'创建成功','code'=>0, 'data'=>$model];
@@ -79,7 +85,7 @@ class LessonController extends \backend\controllers\AuthController
     public function actionUpdate($id)
     {
         $model = Lesson::findOne($id);
-        $post['WxLesson'] = $this->request->post();
+        $post['Lesson'] = $this->request->post();
         $model->load($post);
         if ($model->save()) {
             return ['status'=>200, 'message'=>'修改成功','code'=>0, 'data'=>$model];
