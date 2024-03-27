@@ -25,4 +25,15 @@ class UploadController extends AuthController
         $service = new \common\services\Qiniu();
         return ['code'=>0, 'message'=>'', 'token'=>$service->generateToken('any-site')];
     }
+
+    public function actionSave() {
+        $model = new \backend\models\Upload();
+        $model->key = $this->request->post('key');
+        $model->ip = \Yii::$app->request->userIP;
+        if($model->save()){
+            return ['code'=>0, 'message'=>'upload ok', 'data'=>['image_url'=>$model->key]];
+        }else{
+            return ['code'=>20001, 'message'=>$model->getErrors(), 'data'=>[]];
+        }
+    }
 }
