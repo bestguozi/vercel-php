@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Upload;
+use yii\data\Pagination;
 use yii\web\UploadedFile;
 
 class UploadController extends AuthController
@@ -23,7 +24,17 @@ class UploadController extends AuthController
 
     public function actionUploadToken() {
         $service = new \common\services\Qiniu();
-        return ['code'=>0, 'message'=>'', 'token'=>$service->generateToken('any-site')];
+        $key = \Yii::$app->security->generateRandomString(32);
+        $model = new \backend\models\Upload();
+        $model->key = $key;
+        $model->ip = \Yii::$app->request->userIP;
+        $model->save();
+        return [
+            'code'=>0,
+            'message'=>'',
+            'token'=>$service->generateToken('any-site'),
+            'key' => $key,
+        ];
     }
 
     public function actionSave() {
@@ -35,5 +46,22 @@ class UploadController extends AuthController
         }else{
             return ['code'=>20001, 'message'=>$model->getErrors(), 'data'=>[]];
         }
+    }
+
+    public function actionUploadList()
+    {
+        $query = \backend\models\Upload::find();
+        $pagination = new Pagination(['totalCount'=>$query->count(), 'defaultPageSize'=>10]);
+
+        return [
+            'code'=>0,
+            'message'=>'',
+            'data'=>$query->all(),
+            'pagination'=>[
+                'total'=>$pagination->totalCount,
+                'page'=>$pagination->getPage(),
+                'page_count'=>$pagination->pageCount,
+                'page_size'=>$pagination->getPageSize()
+        ]];
     }
 }

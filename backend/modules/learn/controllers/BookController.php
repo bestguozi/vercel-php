@@ -88,9 +88,10 @@ class BookController extends \backend\controllers\AuthController{
         ];
     }
 
-    public function actionView()
+    public function actionView($id)
     {
-        $book = Book::findOne($this->request->get('id'));
+        //$id = $this->request->get('id');
+        $book = Book::findOne($id);
         return [
           'status'=>200,
             'code'=>0,
