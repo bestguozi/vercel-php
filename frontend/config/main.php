@@ -41,6 +41,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                "api/<controller>/<action>" => '<controller>/<action>',
+                "api/<module><controller>/<action>" => '<module>/<controller>/<action>'
             ],
         ],
 
