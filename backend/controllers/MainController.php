@@ -10,7 +10,6 @@ class MainController extends AuthController
 {
     public function actionIndex()
     {
-
         $user = User::findOne(["auth_key"=>\Yii::$app->request->headers->get('X-Api-Key')]);
         $log = Log::find()->where(['user_id'=>$user->id])->orderBy(['id'=>SORT_DESC])->one();
         $last_login = '';
