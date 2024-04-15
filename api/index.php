@@ -1,4 +1,4 @@
 <?php
-require_once "./news.php";
+require_once "../src/message.php";
 
-echo getNews();
+echo getMessage();
