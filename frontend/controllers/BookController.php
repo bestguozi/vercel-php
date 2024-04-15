@@ -23,7 +23,9 @@ class BookController extends Controller
     }
     public function actionLessons($book_id)
     {
+        //写一个aec
         $lessons = Lesson::find()->where(['book_id'=>$book_id])->all();
+        
         return ['code'=>0,'message'=>'', 'data'=>$lessons];
     }
 }

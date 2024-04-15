@@ -2,7 +2,7 @@
 
 namespace backend\controllers;
 
-use backend\models\Log;
+use backend\models\UserLog;
 use common\models\LoginForm;
 use yii\web\ForbiddenHttpException;
 
@@ -24,7 +24,7 @@ class LoginController extends \yii\web\Controller
             $user = new LoginForm();
             $user->load($post,'');
             if ($user->validate()) {
-                Log::userLogin();
+                UserLog::userLogin();
                 return json_encode(['code'=>0,  'status'=>200, 'message'=>'登陆成功', 'data'=>['name'=>$user->username,'access_token'=>$user->getAccessToken()]]);
             } else {
                 $error = $user->getErrors();

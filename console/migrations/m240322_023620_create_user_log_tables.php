@@ -12,8 +12,8 @@ class m240322_023620_create_log_tables extends Migration
      */
     public function safeUp()
     {
-        //$this->dropTable('log');
-        $this->createTable('log', [
+        //$this->dropTable('user_log');
+        $this->createTable('user_log', [
             'id'=>$this->primaryKey(),
             'event'=>$this->string(),
             'user_id'=>$this->integer(),
@@ -24,7 +24,7 @@ class m240322_023620_create_log_tables extends Migration
             'created_at'=>$this->dateTime(),
         ], 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB');
 
-        $this->createIndex('idx-log-created_by', 'log', 'created_at');
+        $this->createIndex('idx-log-created_by', 'user_log', 'created_at');
     }
 
     /**
@@ -33,7 +33,7 @@ class m240322_023620_create_log_tables extends Migration
     public function safeDown()
     {
         echo "m240322_023620_create_log_tables cannot be reverted.\n";
-        $this->dropTable('log');
+        $this->dropTable('user_log');
         return true;
     }
 
