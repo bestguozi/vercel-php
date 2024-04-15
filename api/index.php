@@ -1,5 +1,2 @@
 <?php
-require __DIR__ ."/../src/message.php";
-
-
-echo getMessage();
+require __DIR__ ."/../backend/web/index.php";
