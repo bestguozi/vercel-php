@@ -11,6 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    'runtimePath' => '/tmp/runtime',
     'modules' => [
         'learn'=>[
             'class'=>'backend\modules\learn\Module'
