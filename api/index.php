@@ -1,4 +1,5 @@
 <?php
-require_once "../src/message.php";
+require __DIR__ ."/../src/message.php";
+
 
 echo getMessage();
